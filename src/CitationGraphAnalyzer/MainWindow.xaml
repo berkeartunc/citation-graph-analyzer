@@ -1,0 +1,109 @@
+<Window x:Class="CitationGraphAnalyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CitationGraphAnalyzer"
+        Title="Citation Graph Analyzer" Width="1200" Height="750">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left: controls and statistics -->
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="12" Orientation="Vertical">
+
+                <TextBlock FontSize="18" FontWeight="Bold" Text="Citation Graph Analyzer" />
+                <TextBlock Margin="0,2,0,12" Foreground="Gray" Text="JSON → Graf → Analiz → Görselleştirme"/>
+
+                <Button x:Name="BtnLoad" Height="34" Content="JSON Yükle (Dosya Seç)"/>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock FontWeight="Bold" Text="H-Index Grafı"/>
+                <TextBlock Foreground="Gray" Text="Makale ID gir (ör. W1686810756) → h-core ile grafı çiz, tıklayınca genişlet." Margin="0,0,0,6"/>
+
+                <TextBox x:Name="TxtArticleId" Height="28" />
+                <Button x:Name="BtnShowH" Height="32" Margin="0,6,0,0" Content="Göster / Baştan Çiz"/>
+
+                <TextBlock Margin="0,10,0,0" FontWeight="Bold" Text="Seçili Makale Sonucu"/>
+                <TextBlock x:Name="LblH" Text="h-index: -" />
+                <TextBlock x:Name="LblHMedian" Text="h-median: -" />
+
+                <TextBlock Margin="0,8,0,0" FontWeight="Bold" Text="h-core (id | aldığı atıf)"/>
+                <ListBox x:Name="ListHCore" Height="140"/>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock FontWeight="Bold" Text="Betweenness Centrality"/>
+                <Button x:Name="BtnBC" Height="32" Margin="0,6,0,0" Content="BC Hesapla"/>
+
+                <ListBox x:Name="ListBC" Height="140"/>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock FontWeight="Bold" Text="k-core"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="TxtK" Width="80" Height="28" />
+                    <Button x:Name="BtnKCore" Height="28" Margin="6,0,0,0" Content="Uygula"/>
+                </StackPanel>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock FontWeight="Bold" Text="Hover Bilgisi"/>
+                <TextBlock x:Name="HoverId" Text="ID: -" TextWrapping="Wrap"/>
+                <TextBlock x:Name="HoverTitle" Text="Başlık: -" TextWrapping="Wrap"/>
+                <TextBlock x:Name="HoverYear" Text="Yıl: -"/>
+                <TextBlock x:Name="HoverAuthors" Text="Yazarlar: -" TextWrapping="Wrap"/>
+                <TextBlock x:Name="HoverCitations" Text="Atıf sayısı: -"/>
+                <TextBlock x:Name="HoverBC" Text="BC: -" />
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock FontWeight="Bold" Text="Graf Özeti (Görünen)"/>
+                <TextBlock x:Name="LblNodes" Text="Düğüm: -"/>
+                <TextBlock x:Name="LblBlack" Text="Siyah kenar: -"/>
+                <TextBlock x:Name="LblGreen" Text="Yeşil kenar: -"/>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <GroupBox x:Name="FocusBox" Header="Focus Özeti (Seçili Düğüm)" Visibility="Collapsed">
+                    <StackPanel Margin="6">
+
+                        <TextBlock x:Name="LblFocusCenter" Text="Merkez: -" FontWeight="Bold" />
+
+                        <TextBlock x:Name="LblFocusIn" Text="Gelen atıf (IN): -" Margin="0,6,0,0"/>
+                        <ListBox x:Name="ListFocusIn" Height="140"/>
+
+                        <TextBlock Foreground="Gray" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap"
+                                   Text="İpucu: Focus moduna çift tık ile girilir. Focus modunda tıklayarak gelen atıflarda gezebilirsin. ESC ile çıkış yapabilirsin."/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Graf Özeti (Tüm Grafik)" Margin="8">
+                    <StackPanel>
+                        <TextBlock x:Name="LblTotalNodes" Text="Toplam düğüm: -" Margin="0,2"/>
+                        <TextBlock x:Name="LblTotalBlack" Text="Toplam siyah kenar: -" Margin="0,2"/>
+                        <TextBlock x:Name="LblTotalGreen" Text="Toplam yeşil kenar: -" Margin="0,2"/>
+
+                        <Separator Margin="0,6"/>
+
+                        <TextBlock x:Name="LblTotalGiven" Text="Referans veren makale: -" Margin="0,2"/>
+                        <TextBlock x:Name="LblTotalReceived" Text="Atıf alan makale: -" Margin="0,2"/>
+
+                        <Separator Margin="0,6"/>
+
+                        <TextBlock x:Name="LblMostGiving" Text="En çok referans veren: -" Margin="0,2"/>
+                        <TextBlock x:Name="LblMostCited" Text="En çok atıf alan: -" Margin="0,2"/>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Right: graph canvas -->
+        <Border Grid.Column="1" Margin="10" BorderBrush="#DDD" BorderThickness="1">
+            <local:GraphView x:Name="View"/>
+        </Border>
+    </Grid>
+</Window>
