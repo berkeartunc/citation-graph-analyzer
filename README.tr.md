@@ -17,7 +17,7 @@ Bilimsel makalelerden oluşan bir JSON dosyasından atıf grafı kuran, bu graf�
 
 `data/articles.json`, bilimsel çalışmaların açık kataloğu olan [OpenAlex](https://openalex.org)'ten alınmış 1.000 bilgisayarlı görü makalesi içerir (1971-2025, CC0 lisansı).
 
-| | |
+| Ölçüt | Değer |
 |---|---|
 | Makale | 1.000 |
 | Atıf kenarı | 1.580 (1.590 atıf, makalenin kendine yaptığı 10 atıf yok sayıldı) |

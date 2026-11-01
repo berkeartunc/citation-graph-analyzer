@@ -17,7 +17,7 @@ A Windows desktop app (C#, WPF) that builds a citation graph from a JSON file of
 
 `data/articles.json` contains 1,000 computer vision articles (1971-2025) taken from [OpenAlex](https://openalex.org), an open catalog of scientific works (CC0 license).
 
-| | |
+| Metric | Value |
 |---|---|
 | Articles | 1,000 |
 | Citation edges | 1,580 (1,590 references, 10 self-citations ignored) |
@@ -61,8 +61,8 @@ Requirements: Windows and the .NET 8 SDK (or Visual Studio 2022).
    ```
    dotnet run --project src/CitationGraphAnalyzer
    ```
-2. Click **JSON Yükle** and select `data/articles.json`.
-3. Enter an article id (for example `W1686810756`) and click **Göster / Baştan Çiz** to see its h-core. Click nodes to expand, double click to open focus mode, and press ESC to leave it.
+2. Click **JSON Yükle** (Load JSON) and select `data/articles.json`.
+3. Enter an article id (for example `W1686810756`) and click **Göster / Baştan Çiz** (Show / Redraw) to see its h-core. Click nodes to expand, double click to open focus mode, and press ESC to leave it.
 
 The UI language is Turkish.
 
